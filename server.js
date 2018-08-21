@@ -3,6 +3,9 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+//For deployment purposes port should be dynamic for Heroku or for localhost 3000
+const port = process.env.PORT || 3000;
+
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -22,10 +25,10 @@ app.use((req, res, next) => {
 });
 
 //*** No other pages work with this middleware
-// app.use((req, res, next) => {
-//   res.render('maintenance.hbs');
-//   }
-// );
+app.use((req, res, next) => {
+  res.render('maintenance.hbs');
+  }
+);
 
 app.use(express.static(__dirname + '/public'));
 
@@ -63,6 +66,6 @@ app.get('/bad', (req, res) => {
 });
 
 
-app.listen(3000, () => {
-  console.log('web-server is running on port 3000..');
+app.listen(port, () => {
+  console.log(`web-server is running on port ${port}`);
 });
