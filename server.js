@@ -25,10 +25,10 @@ app.use((req, res, next) => {
 });
 
 //*** No other pages work with this middleware
-app.use((req, res, next) => {
-  res.render('maintenance.hbs');
-  }
-);
+// app.use((req, res, next) => {
+//   res.render('maintenance.hbs');
+//   }
+// );
 
 app.use(express.static(__dirname + '/public'));
 
